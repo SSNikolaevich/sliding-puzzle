@@ -23,7 +23,7 @@
     <scm>
         <url>https://github.com/SSNikolaevich/sliding-puzzle</url>
         <connection>scm:git:git://github.com/SSNikolaevich/sliding-puzzle.git</connection>
-        <developerConnection>scm:git:git://github.com/SSNikolaevich/sliding-puzzle.git</developerConnection>
+        <developerConnection>scm:git:ssh://git@github.com/SSNikolaevich/sliding-puzzle.git</developerConnection>
     </scm>
 
     <properties>
@@ -50,6 +50,9 @@
                         <format>html</format>
                         <format>xml</format>
                     </formats>
+                    <check>
+                        <haltOnFailure>false</haltOnFailure>
+                    </check>
                 </configuration>
             </plugin>
         </plugins>
