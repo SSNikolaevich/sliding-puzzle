@@ -1,2 +1,2 @@
 # sliding-puzzle
-Sliding puzzle game logic
+Sliding puzzle game logic library
