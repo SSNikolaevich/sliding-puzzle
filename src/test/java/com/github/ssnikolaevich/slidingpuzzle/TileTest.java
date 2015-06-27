@@ -44,6 +44,43 @@ public class TileTest {
     }
 
     @Test
+    public void testFixed() {
+        Tile tile = new Tile();
+        assertFalse(tile.isFixed());
+        tile.setFixed(true);
+        assertTrue(tile.isFixed());
+        tile.setFixed(false);
+        assertFalse(tile.isFixed());
+    }
+
+    @Test
+    public void testOrigin() {
+        Tile tile = new Tile();
+        Position origin = new Position(1, 2);
+        tile.setOrigin(origin);
+        assertEquals(origin, tile.getOrigin());
+    }
+
+    @Test
+    public void testOnOrigin() {
+        Tile tile = new Tile();
+        tile.getOrigin().setColumn(1);
+        tile.getOrigin().setRow(2);
+
+        tile.getPosition().setColumn(3);
+        tile.getPosition().setRow(4);
+        assertFalse(tile.onOrigin());
+
+        tile.getPosition().setColumn(3);
+        tile.getPosition().setRow(2);
+        assertFalse(tile.onOrigin());
+
+        tile.getPosition().setColumn(1);
+        tile.getPosition().setRow(2);
+        assertTrue(tile.onOrigin());
+    }
+
+    @Test
     public void testCreateFromXML() throws ParserConfigurationException, IOException, SAXException {
         final String data = "<tile columns=\"2\" rows=\"3\" fixed=\"1\">"
                 + "<position column=\"4\" row=\"5\"/>"

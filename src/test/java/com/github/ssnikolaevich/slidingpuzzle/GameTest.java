@@ -17,6 +17,7 @@
 package com.github.ssnikolaevich.slidingpuzzle;
 
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -33,6 +34,52 @@ import java.util.Collection;
 import java.util.Iterator;
 
 public class GameTest {
+    @Test
+    public void testGetTileAt() {
+        Collection<Tile> tiles = new ArrayList<>();
+        Tile tile1 = new Tile();
+        tile1.getPosition().setColumn(0);
+        tile1.getPosition().setRow(1);
+        tiles.add(tile1);
+
+        Tile tile2 = new Tile();
+        tile2.getPosition().setColumn(2);
+        tile2.getPosition().setRow(3);
+        tile2.setColumns(3);
+        tile2.setRows(2);
+        tiles.add(tile2);
+
+        Game game = new Game(10, 10, "", tiles);
+        assertNull(game.getTileAt(0, 0));
+        assertNull(game.getTileAt(1, 2));
+        assertNull(game.getTileAt(3, 5));
+        assertNull(game.getTileAt(5, 4));
+        assertEquals(tile1, game.getTileAt(0, 1));
+        assertEquals(tile2, game.getTileAt(2, 3));
+        assertEquals(tile2, game.getTileAt(4, 4));
+    }
+
+    @Test
+    public void testGameIsOver() {
+        Collection<Tile> tiles = new ArrayList<>();
+        Tile tile = new Tile();
+        tiles.add(tile);
+
+        tile.getPosition().setColumn(1);
+        tile.getPosition().setRow(2);
+        tile.getOrigin().setColumn(1);
+        tile.getOrigin().setRow(1);
+        Game game = new Game(3, 3, "", tiles);
+        assertFalse(game.isOver());
+
+        tile.getPosition().setColumn(1);
+        tile.getPosition().setRow(2);
+        tile.getOrigin().setColumn(1);
+        tile.getOrigin().setRow(2);
+        game = new Game(3, 3, "", tiles);
+        assertTrue(game.isOver());
+    }
+
     @Test
     public void testCreateFromXML() throws ParserConfigurationException, IOException, SAXException {
         final String data = "<?xml version=\"1.0\" encoding=\"utf-8\"?>"

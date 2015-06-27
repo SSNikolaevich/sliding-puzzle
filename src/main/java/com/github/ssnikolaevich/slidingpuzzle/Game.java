@@ -82,7 +82,7 @@ public class Game {
     
     public boolean isOver() {
         for (Tile tile : tiles) {
-            if (tile.getPosition() != tile.getOrigin()) {
+            if (!tile.onOrigin()) {
                 return false;
             }
         }
@@ -96,9 +96,9 @@ public class Game {
             final int r = position.getRow();
             if (
                 (column >= c)
-                && (column <= (c + tile.getColumns()))
+                && (column < (c + tile.getColumns()))
                 && (row >= r)
-                && (row <= (r + tile.getRows()))
+                && (row < (r + tile.getRows()))
             ) {
                 return tile;
             }

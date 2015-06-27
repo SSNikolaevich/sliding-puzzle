@@ -86,4 +86,9 @@ public class Tile {
         final int row = position.getRow();
         return new Rectangle(column, row, column + columns - 1, row + rows - 1);
     }
+
+    public boolean onOrigin() {
+        return (position.getColumn() == origin.getColumn())
+                && (position.getRow() == origin.getRow());
+    }
 }
