@@ -33,6 +33,7 @@ public class Game {
         this.rows = rows;
         this.gliph = gliph;
         this.tiles = tiles;
+        listeners = new HashSet<>();
     }
     
     public Game(Element element) {
@@ -213,11 +214,11 @@ public class Game {
         switch (direction) {
             case RIGHT: {
                     ++column;
-                    column = (column + 1) / columns;
+                    column = (column + 1) % columns;
                     break;
                 }
             case DOWN: {
-                    row = (row + 1) / rows;
+                    row = (row + 1) % rows;
                     break;
                 }
             case LEFT: {
