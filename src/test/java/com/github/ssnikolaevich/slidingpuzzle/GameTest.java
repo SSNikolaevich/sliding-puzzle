@@ -81,6 +81,52 @@ public class GameTest {
     }
 
     @Test
+    public void testGameEvents() {
+        Collection<Tile> tiles = new ArrayList<>();
+        Tile tile = new Tile();
+        tile.getOrigin().setColumn(1);
+        tile.getOrigin().setRow(1);
+        tile.getPosition().setColumn(2);
+        tile.getPosition().setRow(1);
+        tiles.add(tile);
+
+        final ArrayList<GameEvent> events = new ArrayList<>();
+        GameListener listener = new GameListener() {
+            @Override
+            public void handle(GameEvent event) {
+                events.add(event);
+            }
+        };
+
+        Game game = new Game(3, 3, "", tiles);
+        game.addListener(listener);
+        game.makeMove(0, 0, Direction.DOWN);
+        game.makeMove(2, 1, Direction.DOWN);
+        game.removeListener(listener);
+        game.makeMove(2, 2, Direction.LEFT);
+        game.addListener(listener);
+        game.makeMove(1, 2, Direction.UP);
+        game.removeListener(listener);
+        game.makeMove(1, 1, Direction.RIGHT);
+
+        assertEquals(4, events.size());
+
+        assertEquals(GameEvent.EventType.MOVE, events.get(0).getType());
+        assertEquals(Direction.DOWN, events.get(0).getDirection());
+        assertTrue(events.get(0).getPushedTiles().isEmpty());
+
+        assertEquals(GameEvent.EventType.MOVE, events.get(1).getType());
+        assertEquals(Direction.DOWN, events.get(1).getDirection());
+        assertTrue(events.get(1).getPushedTiles().contains(tile));
+
+        assertEquals(GameEvent.EventType.MOVE, events.get(2).getType());
+        assertEquals(Direction.UP, events.get(2).getDirection());
+        assertTrue(events.get(2).getPushedTiles().contains(tile));
+
+        assertEquals(GameEvent.EventType.GAME_OVER, events.get(3).getType());
+    }
+
+    @Test
     public void testCreateFromXML() throws ParserConfigurationException, IOException, SAXException {
         final String data = "<?xml version=\"1.0\" encoding=\"utf-8\"?>"
                 + "<level columns=\"3\" rows=\"4\" gliph=\"gliphName\">"
