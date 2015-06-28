@@ -213,7 +213,6 @@ public class Game {
         int row = position.getRow();
         switch (direction) {
             case RIGHT: {
-                    ++column;
                     column = (column + 1) % columns;
                     break;
                 }
