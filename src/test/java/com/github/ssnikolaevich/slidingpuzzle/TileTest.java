@@ -31,6 +31,18 @@ import java.io.InputStream;
 
 public class TileTest {
     @Test
+    public void testConstructor() {
+        Tile tile = new Tile();
+        assertEquals(0, tile.getPosition().getColumn());
+        assertEquals(0, tile.getPosition().getRow());
+        assertEquals(0, tile.getOrigin().getColumn());
+        assertEquals(0, tile.getOrigin().getRow());
+        assertEquals(1, tile.getColumns());
+        assertEquals(1, tile.getRows());
+        assertFalse(tile.isFixed());
+    }
+
+    @Test
     public void testGetRectangle() {
         Tile tile = new Tile();
         tile.setPosition(new Position(2, 3));
