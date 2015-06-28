@@ -105,6 +105,7 @@ public class GameTest {
         game.removeListener(listener);
         game.makeMove(2, 2, Direction.LEFT);
         game.addListener(listener);
+        game.addListener(listener);
         game.makeMove(1, 2, Direction.UP);
         game.removeListener(listener);
         game.makeMove(1, 1, Direction.RIGHT);
