@@ -128,6 +128,156 @@ public class GameTest {
     }
 
     @Test
+    public void testMakeMove() {
+        ArrayList<Tile> tiles = new ArrayList<>();
+
+        Tile tile = new Tile();
+        tile.getPosition().setColumn(1);
+        tile.setFixed(true);
+        tiles.add(tile);
+
+        tile = new Tile();
+        tile.getPosition().setRow(1);
+        tiles.add(tile);
+
+        tile = new Tile();
+        tile.getPosition().setColumn(1);
+        tile.getPosition().setRow(1);
+        tiles.add(tile);
+
+        tile = new Tile();
+        tile.getPosition().setColumn(2);
+        tile.getPosition().setRow(1);
+        tiles.add(tile);
+
+        tile = new Tile();
+        tile.getPosition().setColumn(1);
+        tile.getPosition().setRow(2);
+        tiles.add(tile);
+
+        tile = new Tile();
+        tile.getPosition().setColumn(2);
+        tile.getPosition().setRow(2);
+        tile.setRows(2);
+        tile.setColumns(1);
+        tiles.add(tile);
+
+        Game game = new Game(3, 4, "", tiles);
+
+        game.makeMove(1, 2, Direction.UP);
+        assertEquals(1, tiles.get(0).getPosition().getColumn());
+        assertEquals(0, tiles.get(0).getPosition().getRow());
+        assertEquals(0, tiles.get(1).getPosition().getColumn());
+        assertEquals(1, tiles.get(1).getPosition().getRow());
+        assertEquals(1, tiles.get(2).getPosition().getColumn());
+        assertEquals(1, tiles.get(2).getPosition().getRow());
+        assertEquals(2, tiles.get(3).getPosition().getColumn());
+        assertEquals(1, tiles.get(3).getPosition().getRow());
+        assertEquals(1, tiles.get(4).getPosition().getColumn());
+        assertEquals(2, tiles.get(4).getPosition().getRow());
+        assertEquals(2, tiles.get(5).getPosition().getColumn());
+        assertEquals(2, tiles.get(5).getPosition().getRow());
+
+        game.makeMove(2, 3, Direction.DOWN);
+        assertEquals(1, tiles.get(0).getPosition().getColumn());
+        assertEquals(0, tiles.get(0).getPosition().getRow());
+        assertEquals(0, tiles.get(1).getPosition().getColumn());
+        assertEquals(1, tiles.get(1).getPosition().getRow());
+        assertEquals(1, tiles.get(2).getPosition().getColumn());
+        assertEquals(1, tiles.get(2).getPosition().getRow());
+        assertEquals(2, tiles.get(3).getPosition().getColumn());
+        assertEquals(1, tiles.get(3).getPosition().getRow());
+        assertEquals(1, tiles.get(4).getPosition().getColumn());
+        assertEquals(2, tiles.get(4).getPosition().getRow());
+        assertEquals(2, tiles.get(5).getPosition().getColumn());
+        assertEquals(2, tiles.get(5).getPosition().getRow());
+
+        game.makeMove(2, 1, Direction.LEFT);
+        assertEquals(1, tiles.get(0).getPosition().getColumn());
+        assertEquals(0, tiles.get(0).getPosition().getRow());
+        assertEquals(2, tiles.get(1).getPosition().getColumn());
+        assertEquals(1, tiles.get(1).getPosition().getRow());
+        assertEquals(0, tiles.get(2).getPosition().getColumn());
+        assertEquals(1, tiles.get(2).getPosition().getRow());
+        assertEquals(1, tiles.get(3).getPosition().getColumn());
+        assertEquals(1, tiles.get(3).getPosition().getRow());
+        assertEquals(1, tiles.get(4).getPosition().getColumn());
+        assertEquals(2, tiles.get(4).getPosition().getRow());
+        assertEquals(2, tiles.get(5).getPosition().getColumn());
+        assertEquals(2, tiles.get(5).getPosition().getRow());
+
+        game.makeMove(2, 3, Direction.UP);
+        assertEquals(1, tiles.get(0).getPosition().getColumn());
+        assertEquals(0, tiles.get(0).getPosition().getRow());
+        assertEquals(2, tiles.get(1).getPosition().getColumn());
+        assertEquals(0, tiles.get(1).getPosition().getRow());
+        assertEquals(0, tiles.get(2).getPosition().getColumn());
+        assertEquals(1, tiles.get(2).getPosition().getRow());
+        assertEquals(1, tiles.get(3).getPosition().getColumn());
+        assertEquals(1, tiles.get(3).getPosition().getRow());
+        assertEquals(1, tiles.get(4).getPosition().getColumn());
+        assertEquals(2, tiles.get(4).getPosition().getRow());
+        assertEquals(2, tiles.get(5).getPosition().getColumn());
+        assertEquals(1, tiles.get(5).getPosition().getRow());
+
+        game.makeMove(2, 1, Direction.RIGHT);
+        assertEquals(1, tiles.get(0).getPosition().getColumn());
+        assertEquals(0, tiles.get(0).getPosition().getRow());
+        assertEquals(2, tiles.get(1).getPosition().getColumn());
+        assertEquals(0, tiles.get(1).getPosition().getRow());
+        assertEquals(1, tiles.get(2).getPosition().getColumn());
+        assertEquals(1, tiles.get(2).getPosition().getRow());
+        assertEquals(2, tiles.get(3).getPosition().getColumn());
+        assertEquals(1, tiles.get(3).getPosition().getRow());
+        assertEquals(1, tiles.get(4).getPosition().getColumn());
+        assertEquals(2, tiles.get(4).getPosition().getRow());
+        assertEquals(0, tiles.get(5).getPosition().getColumn());
+        assertEquals(1, tiles.get(5).getPosition().getRow());
+
+        game.makeMove(1, 2, Direction.DOWN);
+        assertEquals(1, tiles.get(0).getPosition().getColumn());
+        assertEquals(0, tiles.get(0).getPosition().getRow());
+        assertEquals(2, tiles.get(1).getPosition().getColumn());
+        assertEquals(0, tiles.get(1).getPosition().getRow());
+        assertEquals(1, tiles.get(2).getPosition().getColumn());
+        assertEquals(1, tiles.get(2).getPosition().getRow());
+        assertEquals(2, tiles.get(3).getPosition().getColumn());
+        assertEquals(1, tiles.get(3).getPosition().getRow());
+        assertEquals(1, tiles.get(4).getPosition().getColumn());
+        assertEquals(3, tiles.get(4).getPosition().getRow());
+        assertEquals(0, tiles.get(5).getPosition().getColumn());
+        assertEquals(1, tiles.get(5).getPosition().getRow());
+
+        game.makeMove(1, 3, Direction.LEFT);
+        assertEquals(1, tiles.get(0).getPosition().getColumn());
+        assertEquals(0, tiles.get(0).getPosition().getRow());
+        assertEquals(2, tiles.get(1).getPosition().getColumn());
+        assertEquals(0, tiles.get(1).getPosition().getRow());
+        assertEquals(1, tiles.get(2).getPosition().getColumn());
+        assertEquals(1, tiles.get(2).getPosition().getRow());
+        assertEquals(2, tiles.get(3).getPosition().getColumn());
+        assertEquals(1, tiles.get(3).getPosition().getRow());
+        assertEquals(0, tiles.get(4).getPosition().getColumn());
+        assertEquals(3, tiles.get(4).getPosition().getRow());
+        assertEquals(0, tiles.get(5).getPosition().getColumn());
+        assertEquals(1, tiles.get(5).getPosition().getRow());
+
+        game.makeMove(2, 0, Direction.UP);
+        assertEquals(1, tiles.get(0).getPosition().getColumn());
+        assertEquals(0, tiles.get(0).getPosition().getRow());
+        assertEquals(2, tiles.get(1).getPosition().getColumn());
+        assertEquals(3, tiles.get(1).getPosition().getRow());
+        assertEquals(1, tiles.get(2).getPosition().getColumn());
+        assertEquals(1, tiles.get(2).getPosition().getRow());
+        assertEquals(2, tiles.get(3).getPosition().getColumn());
+        assertEquals(1, tiles.get(3).getPosition().getRow());
+        assertEquals(0, tiles.get(4).getPosition().getColumn());
+        assertEquals(3, tiles.get(4).getPosition().getRow());
+        assertEquals(0, tiles.get(5).getPosition().getColumn());
+        assertEquals(1, tiles.get(5).getPosition().getRow());
+    }
+
+    @Test
     public void testCreateFromXML() throws ParserConfigurationException, IOException, SAXException {
         final String data = "<?xml version=\"1.0\" encoding=\"utf-8\"?>"
                 + "<level columns=\"3\" rows=\"4\" gliph=\"gliphName\">"
