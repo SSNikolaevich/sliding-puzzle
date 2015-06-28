@@ -111,8 +111,8 @@ public class Game {
         final Position position = tile.getPosition();
         int left = position.getColumn();
         int top = position.getRow();
-        int right = left + tile.getColumns();
-        int bottom = top + tile.getRows();
+        int right = left + tile.getColumns() - 1;
+        int bottom = top + tile.getRows() - 1;
         switch (direction) {
             case LEFT: {
                 left -= 1;
@@ -123,7 +123,7 @@ public class Game {
                 break;
             }
             case RIGHT: {
-                left = right;
+                left = right + 1;
                 if (left >= columns) {
                     left = 0;
                 }
@@ -139,7 +139,7 @@ public class Game {
                 break;
             }
             case DOWN: {
-                top = bottom;
+                top = bottom + 1;
                 if (top >= rows) {
                     top = 0;
                 }
@@ -187,8 +187,8 @@ public class Game {
         final int rmin = position.getRow();
         final int tileColumns = tile.getColumns();
         final int tileRows = tile.getRows();
-        final int cmax = cmin + tileColumns;
-        final int rmax = rmin + tileRows;
+        final int cmax = cmin + tileColumns - 1;
+        final int rmax = rmin + tileRows - 1;
         return !(
                 tile.isFixed()
                 || ((direction == Direction.LEFT) && (cmin == 0) && (tileColumns > 1))
