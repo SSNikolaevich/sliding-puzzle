@@ -105,7 +105,7 @@ public class TileTest {
         Element element = document.getDocumentElement();
         element.normalize();
 
-        Tile tile = new Tile(document.getDocumentElement());
+        Tile tile = new Tile(element);
         assertTrue(tile.isFixed());
         assertEquals(2, tile.getColumns());
         assertEquals(3, tile.getRows());

@@ -75,7 +75,7 @@ public class PositionTest {
         Element element = document.getDocumentElement();
         element.normalize();
 
-        Position position = new Position(document.getDocumentElement());
+        Position position = new Position(element);
         assertEquals(4, position.getColumn());
         assertEquals(5, position.getRow());
     }
